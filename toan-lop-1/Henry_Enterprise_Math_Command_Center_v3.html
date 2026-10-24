@@ -1,0 +1,1514 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Toán Lớp 1 Minh">
+<meta name="theme-color" content="#0F172A">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>Phần mềm Học Toán Tư Duy Lớp 1 — Bé Minh (Henry)</title>
+<style>
+  :root {
+    --navy-900: #0F172A;
+    --navy-800: #1E293B;
+    --navy-700: #334155;
+    --blue-600: #1D4ED8;
+    --blue-500: #2563EB;
+    --blue-100: #DBEAFE;
+    --blue-50:  #EFF6FF;
+    --teal-700: #0F766E;
+    --teal-600: #0D9488;
+    --teal-100: #CCFBF1;
+    --teal-50:  #F0FDFA;
+    --amber-600: #D97706;
+    --amber-500: #F59E0B;
+    --amber-100: #FEF3C7;
+    --amber-50:  #FFFBEB;
+    --rose-600: #E11D48;
+    --rose-100: #FFE4E6;
+    --emerald-600: #059669;
+    --emerald-100: #D1FAE5;
+    --purple-700: #6D28D9;
+    --purple-100: #EDE9FE;
+    --cream-bg: #F8FAFC;
+    --card-bg:  #FFFFFF;
+    --border:   #CBD5E1;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: var(--cream-bg);
+    color: var(--navy-900);
+    line-height: 1.45;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Top Header */
+  .top-header {
+    background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 100%);
+    color: #FFFFFF;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    border-bottom: 3px solid var(--amber-500);
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.18);
+  }
+
+  .brand-block {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .brand-badge {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #F59E0B, #D97706);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 20px;
+    color: #0F172A;
+    box-shadow: 0 3px 10px rgba(245, 158, 11, 0.35);
+    flex-shrink: 0;
+  }
+
+  .brand-title h1 {
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: -0.2px;
+  }
+
+  .brand-title p {
+    font-size: 11.5px;
+    color: #93C5FD;
+    font-weight: 600;
+  }
+
+  .telemetry-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .stat-pill {
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    border-radius: 999px;
+    padding: 5px 11px;
+    font-size: 11.5px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    white-space: nowrap;
+  }
+
+  .stat-pill .val {
+    color: #FCD34D;
+    font-weight: 800;
+  }
+
+  .btn-action-top {
+    background: var(--teal-600);
+    color: #FFFFFF;
+    border: none;
+    border-radius: 8px;
+    padding: 7px 12px;
+    font-size: 11.5px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .btn-action-top:hover {
+    background: var(--teal-700);
+    transform: translateY(-1px);
+  }
+
+  .btn-action-amber {
+    background: linear-gradient(135deg, #F59E0B, #D97706);
+    color: #0F172A;
+  }
+
+  .btn-action-amber:hover {
+    background: #D97706;
+    color: #FFFFFF;
+  }
+
+  /* Navigation Tabs */
+  .nav-tabs {
+    background: #FFFFFF;
+    border-bottom: 2px solid #E2E8F0;
+    padding: 0 20px;
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+  }
+
+  .tab-btn {
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    padding: 12px 14px;
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--navy-700);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+  }
+
+  .tab-btn:hover {
+    color: var(--blue-600);
+    background: var(--blue-50);
+  }
+
+  .tab-btn.active {
+    color: var(--blue-600);
+    border-bottom-color: var(--blue-600);
+    background: #F8FAFC;
+  }
+
+  .tab-badge {
+    font-size: 11px;
+    padding: 2px 7px;
+    border-radius: 6px;
+    background: var(--blue-100);
+    color: var(--blue-600);
+    font-weight: 800;
+  }
+
+  /* Main Container */
+  .main-workspace {
+    max-width: 1380px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 18px 20px;
+    flex: 1;
+  }
+
+  .tab-panel {
+    display: none;
+    animation: fadeIn 0.2s ease;
+  }
+
+  .tab-panel.active {
+    display: block;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .grid-2col {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 18px;
+  }
+
+  @media (max-width: 960px) {
+    .grid-2col {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .panel-card {
+    background: var(--card-bg);
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 20px;
+    box-shadow: 0 3px 10px rgba(15, 23, 42, 0.04);
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1.5px solid #F1F5F9;
+  }
+
+  .card-title {
+    font-size: 15.5px;
+    font-weight: 800;
+    color: var(--navy-900);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .card-tag {
+    font-size: 11.5px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: var(--teal-100);
+    color: var(--teal-700);
+    white-space: nowrap;
+  }
+
+  /* Tab 1: Ten-Frame & CPA */
+  .mode-selector {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+
+  .mode-btn {
+    flex: 1;
+    min-width: 140px;
+    padding: 10px 12px;
+    border: 1.5px solid var(--border);
+    border-radius: 9px;
+    background: #F8FAFC;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--navy-800);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .mode-btn.active {
+    background: var(--blue-600);
+    color: #FFFFFF;
+    border-color: var(--blue-600);
+  }
+
+  .ten-frame-stage {
+    background: #F8FAFC;
+    border: 2px solid #94A3B8;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 14px;
+  }
+
+  .ten-frame-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .tf-cell {
+    aspect-ratio: 1;
+    background: #FFFFFF;
+    border: 2px solid #475569;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.12s ease, background 0.15s ease;
+  }
+
+  .tf-cell:hover {
+    background: #F1F5F9;
+    transform: scale(1.03);
+  }
+
+  .tf-cell .cell-idx {
+    position: absolute;
+    top: 4px;
+    left: 6px;
+    font-size: 10px;
+    font-weight: 700;
+    color: #94A3B8;
+  }
+
+  .chip {
+    width: 72%;
+    height: 72%;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 15px;
+    color: #FFFFFF;
+    box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.22), 0 3px 6px rgba(15, 23, 42, 0.18);
+    transition: all 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .chip.part-a {
+    background: radial-gradient(circle at 32% 32%, #60A5FA, #1D4ED8);
+  }
+
+  .chip.part-b {
+    background: radial-gradient(circle at 32% 32%, #FBBF24, #D97706);
+  }
+
+  .cpa-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+  }
+
+  .target-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .num-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    border: 1.5px solid var(--border);
+    background: #FFFFFF;
+    font-weight: 800;
+    font-size: 14px;
+    cursor: pointer;
+    color: var(--navy-800);
+  }
+
+  .num-btn.active {
+    background: var(--navy-900);
+    color: #FFFFFF;
+    border-color: var(--navy-900);
+  }
+
+  /* Fact Family & Oral Explanation */
+  .fact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  .fact-box {
+    background: var(--blue-50);
+    border: 1.5px solid #93C5FD;
+    border-radius: 9px;
+    padding: 9px 12px;
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--navy-900);
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .fact-box.sub {
+    background: var(--amber-50);
+    border-color: #FCD34D;
+  }
+
+  .oral-card {
+    background: linear-gradient(135deg, #F0FDFA 0%, #CCFBF1 100%);
+    border: 1.5px solid var(--teal-600);
+    border-radius: 11px;
+    padding: 13px 15px;
+    margin-top: 14px;
+  }
+
+  .oral-title {
+    font-size: 12.5px;
+    font-weight: 800;
+    color: var(--teal-700);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .oral-text {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--navy-900);
+    line-height: 1.45;
+  }
+
+  .bilingual-strip {
+    background: #F5F3FF;
+    border: 1.5px solid #C4B5FD;
+    border-radius: 10px;
+    padding: 11px 14px;
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .en-sentence {
+    font-size: 13.5px;
+    font-weight: 800;
+    color: #4C1D95;
+  }
+
+  .en-vn-sub {
+    font-size: 12px;
+    font-weight: 600;
+    color: #475569;
+    margin-top: 3px;
+  }
+
+  .btn-speak {
+    background: var(--purple-700);
+    color: #FFFFFF;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 13px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  /* Tab 2: Singapore Bar Modeling */
+  .slider-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 12px;
+    background: #F8FAFC;
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid #E2E8F0;
+  }
+
+  .slider-row label {
+    font-size: 13px;
+    font-weight: 800;
+    min-width: 140px;
+  }
+
+  .slider-row input[type="range"] {
+    flex: 1;
+    accent-color: var(--blue-600);
+    height: 24px;
+  }
+
+  .slider-val {
+    font-size: 15px;
+    font-weight: 900;
+    color: var(--blue-600);
+    min-width: 32px;
+    text-align: right;
+  }
+
+  .solve-steps {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 12px;
+  }
+
+  .solve-step {
+    background: #F8FAFC;
+    border-left: 4px solid var(--blue-600);
+    border-radius: 8px;
+    padding: 10px 12px;
+  }
+
+  .solve-step h4 {
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--blue-600);
+    margin-bottom: 3px;
+  }
+
+  .solve-step p {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--navy-900);
+  }
+
+  /* Tab 3: Balance & Queue */
+  .weight-btn-group {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+
+  .weight-btn {
+    padding: 9px 15px;
+    border-radius: 8px;
+    border: 1.5px solid var(--navy-800);
+    background: #FFFFFF;
+    font-weight: 800;
+    font-size: 13.5px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .weight-btn:hover {
+    background: var(--amber-100);
+    border-color: var(--amber-600);
+  }
+
+  /* Tab 4: 3+1+1 Daily Practice */
+  .mission-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .mission-item {
+    background: #FFFFFF;
+    border: 1.5px solid var(--border);
+    border-radius: 11px;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .mission-tag {
+    font-size: 11px;
+    font-weight: 800;
+    padding: 3px 9px;
+    border-radius: 6px;
+    display: inline-block;
+    margin-bottom: 4px;
+  }
+
+  .tag-core { background: var(--blue-100); color: var(--blue-600); }
+  .tag-review { background: var(--teal-100); color: var(--teal-700); }
+  .tag-olympiad { background: var(--amber-100); color: var(--amber-600); }
+
+  .mission-q {
+    font-size: 14.5px;
+    font-weight: 700;
+    color: var(--navy-900);
+  }
+
+  .mission-input-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .mission-input {
+    width: 78px;
+    height: 42px;
+    border: 2px solid #64748B;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--navy-900);
+  }
+
+  .schedule-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 12px;
+  }
+
+  .ebb-card {
+    background: #F8FAFC;
+    border: 1.5px solid #CBD5E1;
+    border-radius: 10px;
+    padding: 10px 12px;
+    text-align: center;
+  }
+
+  .ebb-card.done {
+    background: var(--emerald-100);
+    border-color: var(--emerald-600);
+  }
+
+  .ebb-day {
+    font-size: 11.5px;
+    font-weight: 800;
+    color: var(--navy-700);
+  }
+
+  .ebb-status {
+    font-size: 13.5px;
+    font-weight: 900;
+    color: var(--emerald-600);
+    margin-top: 3px;
+  }
+
+  /* Modal Guide for iPad / Android Installation */
+  .modal-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.65);
+    z-index: 999;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+  }
+
+  .modal-backdrop.open {
+    display: flex;
+  }
+
+  .modal-box {
+    background: #FFFFFF;
+    border: 2px solid var(--amber-500);
+    border-radius: 16px;
+    max-width: 620px;
+    width: 100%;
+    padding: 20px 22px;
+    box-shadow: 0 20px 45px rgba(15, 23, 42, 0.35);
+  }
+
+  /* Print Stylesheet for 1-Click A4 Worksheet */
+  @media print {
+    .top-header, .nav-tabs, .no-print, .modal-backdrop {
+      display: none !important;
+    }
+    body {
+      background: #FFFFFF;
+    }
+    .main-workspace {
+      padding: 0;
+      max-width: 100%;
+    }
+    .tab-panel {
+      display: block !important;
+      margin-bottom: 18px;
+      page-break-inside: avoid;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header class="top-header">
+  <div class="brand-block">
+    <div class="brand-badge">H+</div>
+    <div class="brand-title">
+      <h1>Phần mềm Học Toán Tư Duy Lớp 1 — Bé Minh (Henry)</h1>
+      <p>Kết hợp: Toán Lớp 1 Việt Nam (GDPT 2018) • Toán Tiếng Anh (Cambridge / Pearson iPrimary) • Toán Tư duy</p>
+    </div>
+  </div>
+  <div class="telemetry-bar">
+    <div class="stat-pill">Ngày học: <span class="val" id="streakVal">7 ngày</span></div>
+    <div class="stat-pill">Điểm thưởng: <span class="val" id="scoreVal">120 sao</span></div>
+    <a class="btn-action-top" href="03_SACH_GIAO_KHOA_TOAN_TU_DUY_LOP_1_FULL_24_TRANG_V2_1_300DPI.pdf" target="_blank">📖 Sách Toán 24 Trang</a>
+    <button class="btn-action-top btn-action-amber" onclick="openInstallModal()">📱 Cài lên iPad / Máy tính bảng</button>
+    <button class="btn-action-top" onclick="window.print()">🖨️ In phiếu bài tập A4</button>
+  </div>
+</header>
+
+<nav class="nav-tabs">
+  <button class="tab-btn active" onclick="switchTab('tab-cpa', this)">
+    <span>1. Khung 10 ô &amp; Sơ đồ tách – gộp</span>
+    <span class="tab-badge">Cốt lõi</span>
+  </button>
+  <button class="tab-btn" onclick="switchTab('tab-bar', this)">
+    <span>2. Sơ đồ đoạn thẳng giải toán lời văn</span>
+    <span class="tab-badge">Bar Model</span>
+  </button>
+  <button class="tab-btn" onclick="switchTab('tab-olympiad', this)">
+    <span>3. Cân thăng bằng &amp; Toán xếp hàng</span>
+    <span class="tab-badge">Tư duy Logic</span>
+  </button>
+  <button class="tab-btn" onclick="switchTab('tab-spaced', this)">
+    <span>4. Bài tập hằng ngày (3 + 1 + 1) &amp; Góc Ba Mẹ</span>
+    <span class="tab-badge">15 phút/ngày</span>
+  </button>
+</nav>
+
+<main class="main-workspace">
+
+  <!-- TAB 1: CPA & TEN-FRAME LAB -->
+  <section id="tab-cpa" class="tab-panel active">
+    <div class="grid-2col">
+      <div class="panel-card">
+        <div class="card-header">
+          <div class="card-title">🟦 Bước 1: Đếm và tách nhóm trên Khung 10 ô</div>
+          <span class="card-tag" id="cpaStatusTag">Bấm vào chấm tròn để đổi màu</span>
+        </div>
+
+        <div class="cpa-controls">
+          <div class="target-group">
+            <span style="font-size:12.5px;font-weight:800;color:#334155;">Chọn tổng số lượng:</span>
+            <button class="num-btn" onclick="setCpaTarget(6, this)">6</button>
+            <button class="num-btn" onclick="setCpaTarget(7, this)">7</button>
+            <button class="num-btn" onclick="setCpaTarget(8, this)">8</button>
+            <button class="num-btn" onclick="setCpaTarget(9, this)">9</button>
+            <button class="num-btn active" onclick="setCpaTarget(10, this)">10</button>
+          </div>
+          <button class="mode-btn" style="flex:0 0 auto;background:#FEF3C7;border-color:#F59E0B;" onclick="randomizeCpaSplit()">🎲 Đổi cách tách khác</button>
+        </div>
+
+        <div class="ten-frame-stage">
+          <div class="ten-frame-grid" id="tenFrameGrid"></div>
+          <p style="text-align:center;font-size:12.5px;color:#475569;margin-top:10px;font-weight:600;">
+            💡 Hướng dẫn: Minh bấm vào bất kỳ chấm tròn nào để đổi màu giữa <b>Nhóm Xanh (Phần 1)</b> và <b>Nhóm Vàng (Phần 2)</b> nhé!
+          </p>
+        </div>
+
+        <div class="oral-card">
+          <div class="oral-title">
+            <span>🗣️ Tập giải thích cách làm trọn câu ("Vì... nên...")</span>
+            <button class="btn-speak" style="background:#0F766E;" onclick="speakVietnameseExplanation()">🔊 Nghe mẫu câu TV</button>
+          </div>
+          <div class="oral-text" id="oralText">
+            "Vì 10 gồm 7 và 3, nên 7 cộng 3 bằng 10, và 10 trừ 7 bằng 3."
+          </div>
+        </div>
+
+        <div class="bilingual-strip">
+          <div>
+            <div style="font-size:11px;font-weight:800;color:#6D28D9;text-transform:uppercase;">Câu Tiếng Anh Toán Lớp 1 (Cambridge / Pearson iPrimary)</div>
+            <div class="en-sentence" id="enSentence">"7 and 3 make 10. The whole is 10; the parts are 7 and 3."</div>
+            <div class="en-vn-sub" id="enSentenceVn">Dịch nghĩa: 7 và 3 gộp lại thành 10. Tổng (Whole) là 10; hai phần (Parts) là 7 và 3.</div>
+          </div>
+          <button class="btn-speak" onclick="speakEnglishSentence()">🔊 Nghe phát âm EN</button>
+        </div>
+      </div>
+
+      <div class="panel-card">
+        <div class="card-header">
+          <div class="card-title">📐 Bước 2 &amp; 3: Sơ đồ tách – gộp (Number Bonds) &amp; Phép tính</div>
+          <span class="card-tag">Hiểu cấu tạo số</span>
+        </div>
+
+        <div style="background:#F8FAFC;border:1.5px solid #E2E8F0;border-radius:12px;padding:10px;text-align:center;">
+          <svg id="numberBondSvg" viewBox="0 0 420 225" width="100%" height="215">
+            <line id="nbLineLeft" x1="185" y1="72" x2="115" y2="144" stroke="#1E293B" stroke-width="3.5" stroke-linecap="round"/>
+            <line id="nbLineRight" x1="235" y1="72" x2="305" y2="144" stroke="#1E293B" stroke-width="3.5" stroke-linecap="round"/>
+
+            <!-- Whole Node -->
+            <text x="210" y="13" text-anchor="middle" font-size="10" font-weight="800" fill="#1D4ED8">TỔNG (WHOLE)</text>
+            <circle cx="210" cy="54" r="32" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="3.5"/>
+            <text id="nbWholeText" x="210" y="63" text-anchor="middle" font-size="25" font-weight="900" fill="#0F172A">10</text>
+
+            <!-- Part A Node -->
+            <circle cx="95" cy="166" r="30" fill="#DBEAFE" stroke="#2563EB" stroke-width="3"/>
+            <text id="nbPartAText" x="95" y="175" text-anchor="middle" font-size="23" font-weight="900" fill="#1D4ED8">7</text>
+            <text x="95" y="213" text-anchor="middle" font-size="9.5" font-weight="800" fill="#1E40AF">PHẦN 1 (PART)</text>
+
+            <!-- Part B Node -->
+            <circle cx="325" cy="166" r="30" fill="#FEF3C7" stroke="#D97706" stroke-width="3"/>
+            <text id="nbPartBText" x="325" y="175" text-anchor="middle" font-size="23" font-weight="900" fill="#B45309">3</text>
+            <text x="325" y="213" text-anchor="middle" font-size="9.5" font-weight="800" fill="#92400E">PHẦN 2 (PART)</text>
+          </svg>
+        </div>
+
+        <div style="margin-top:14px;">
+          <div style="font-size:13px;font-weight:800;color:#0F172A;margin-bottom:6px;">
+            🔢 Bộ 4 phép tính cộng – trừ liên quan (Fact Family):
+          </div>
+          <div class="fact-grid">
+            <div class="fact-box" id="ffAdd1">7 + 3 = 10</div>
+            <div class="fact-box" id="ffAdd2">3 + 7 = 10</div>
+            <div class="fact-box sub" id="ffSub1">10 - 7 = 3</div>
+            <div class="fact-box sub" id="ffSub2">10 - 3 = 7</div>
+          </div>
+        </div>
+
+        <div style="margin-top:14px;background:#FFFBEB;border:1.5px solid #FCD34D;border-radius:10px;padding:12px 14px;">
+          <div style="font-size:12.5px;font-weight:800;color:#92400E;margin-bottom:6px;">
+            🎯 Đố vui nhanh: Điền số còn thiếu vào ô trống
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;">
+            <div id="miniQuizPrompt" style="font-size:16px;font-weight:900;color:#0F172A;">7 + [ ? ] = 10</div>
+            <div style="display:flex;gap:8px;">
+              <input id="miniQuizInput" type="number" class="mission-input" placeholder="?" value="">
+              <button class="btn-action-top" onclick="verifyMiniQuiz()">Kiểm tra</button>
+            </div>
+          </div>
+          <div id="miniQuizFeedback" style="font-size:12.5px;font-weight:700;margin-top:6px;color:#059669;"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 2: SINGAPORE BAR MODEL STUDIO -->
+  <section id="tab-bar" class="tab-panel">
+    <div class="grid-2col">
+      <div class="panel-card">
+        <div class="card-header">
+          <div class="card-title">📊 Vẽ Sơ đồ đoạn thẳng giải toán có lời văn (Bar Model)</div>
+          <span class="card-tag">Trực quan dễ hiểu</span>
+        </div>
+
+        <div class="mode-selector">
+          <button class="mode-btn active" onclick="setBarSchema('part-whole', this)">1. Dạng Gộp lại (Tìm Tổng)</button>
+          <button class="mode-btn" onclick="setBarSchema('comparison', this)">2. Dạng So sánh Nhiều hơn – Ít hơn</button>
+          <button class="mode-btn" onclick="setBarSchema('change', this)">3. Dạng Bớt đi (Tìm phần còn lại)</button>
+        </div>
+
+        <div class="slider-row">
+          <label id="barLabelA">Số lượng của Minh (A):</label>
+          <input type="range" id="barSliderA" min="2" max="12" value="7" oninput="updateBarModel()">
+          <span class="slider-val" id="barValA">7</span>
+        </div>
+
+        <div class="slider-row">
+          <label id="barLabelB">Số lượng của An (B):</label>
+          <input type="range" id="barSliderB" min="1" max="10" value="4" oninput="updateBarModel()">
+          <span class="slider-val" id="barValB">4</span>
+        </div>
+
+        <div style="background:#F8FAFC;border:1.5px solid #CBD5E1;border-radius:12px;padding:16px;margin-top:12px;">
+          <svg id="barModelSvg" viewBox="0 0 560 210" width="100%" height="205"></svg>
+        </div>
+      </div>
+
+      <div class="panel-card">
+        <div class="card-header">
+          <div class="card-title">🧭 4 bước giải bài toán có lời văn dễ hiểu</div>
+          <span class="card-tag">Rèn tư duy mạch lạc</span>
+        </div>
+
+        <div style="background:#EFF6FF;border:1.5px solid #93C5FD;border-radius:10px;padding:13px 15px;margin-bottom:12px;">
+          <div style="font-size:11.5px;font-weight:800;color:#1D4ED8;text-transform:uppercase;margin-bottom:4px;">Đề bài toán tương ứng với sơ đồ:</div>
+          <div id="barProblemText" style="font-size:14px;font-weight:700;color:#0F172A;line-height:1.45;"></div>
+          <div id="barProblemEn" style="font-size:12.5px;font-weight:600;color:#475569;margin-top:4px;font-style:italic;"></div>
+        </div>
+
+        <div class="solve-steps">
+          <div class="solve-step">
+            <h4>Bước 1: Đọc kỹ đề bài</h4>
+            <p id="solveStep1"></p>
+          </div>
+          <div class="solve-step">
+            <h4>Bước 2: Nhìn sơ đồ đoạn thẳng</h4>
+            <p id="solveStep2"></p>
+          </div>
+          <div class="solve-step">
+            <h4>Bước 3: Viết phép tính</h4>
+            <p id="solveStep3"></p>
+          </div>
+          <div class="solve-step">
+            <h4>Bước 4: Kiểm tra lại kết quả</h4>
+            <p id="solveStep4"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 3: BALANCE & QUEUE LAB -->
+  <section id="tab-olympiad" class="tab-panel">
+    <div class="grid-2col">
+      <div class="panel-card">
+        <div class="card-header">
+          <div class="card-title">⚖️ Trò chơi Cân thăng bằng — Tìm số chưa biết</div>
+          <span class="card-tag" id="balanceStatusBadge">Trạng thái: Đang lệch cân</span>
+        </div>
+
+        <p style="font-size:13px;font-weight:600;color:#334155;margin-bottom:10px;">
+          Đĩa cân bên trái có <b>Hộp Bí Ẩn [ ? ]</b> và quả cân <b>đã biết</b>. Đĩa cân bên phải có quả cân <b>tổng</b>. Minh hãy chọn số kg cho Hộp Bí Ẩn để hai bên cân bằng nhau nhé!
+        </p>
+
+        <div style="background:#F8FAFC;border:1.5px solid #CBD5E1;border-radius:12px;padding:12px;text-align:center;">
+          <svg id="balanceSvg" viewBox="0 0 500 220" width="100%" height="210">
+            <polygon points="220,205 280,205 250,130" fill="#334155"/>
+            <rect x="190" y="202" width="120" height="10" rx="4" fill="#0F172A"/>
+            <g id="balanceBeamGroup" transform="rotate(-8, 250, 130)">
+              <line x1="85" y1="130" x2="415" y2="130" stroke="#0F172A" stroke-width="6" stroke-linecap="round"/>
+              <!-- Left Pan -->
+              <line x1="115" y1="130" x2="95" y2="165" stroke="#64748B" stroke-width="2.5"/>
+              <line x1="115" y1="130" x2="135" y2="165" stroke="#64748B" stroke-width="2.5"/>
+              <rect x="65" y="165" width="100" height="8" rx="4" fill="#1D4ED8"/>
+              <rect x="73" y="127" width="42" height="38" rx="6" fill="#F59E0B" stroke="#B45309" stroke-width="2.5"/>
+              <text id="mysteryBoxSvgText" x="94" y="152" text-anchor="middle" font-size="16" font-weight="900" fill="#0F172A">? (5)</text>
+              <rect x="120" y="135" width="36" height="30" rx="5" fill="#2563EB"/>
+              <text id="leftKnownSvgText" x="138" y="155" text-anchor="middle" font-size="13" font-weight="800" fill="#FFFFFF">+3</text>
+
+              <!-- Right Pan -->
+              <line x1="385" y1="130" x2="365" y2="165" stroke="#64748B" stroke-width="2.5"/>
+              <line x1="385" y1="130" x2="405" y2="165" stroke="#64748B" stroke-width="2.5"/>
+              <rect x="335" y="165" width="100" height="8" rx="4" fill="#0F766E"/>
+              <rect x="355" y="123" width="60" height="42" rx="7" fill="#0D9488"/>
+              <text id="rightTotalSvgText" x="385" y="150" text-anchor="middle" font-size="17" font-weight="900" fill="#FFFFFF">10 kg</text>
+            </g>
+            <circle cx="250" cy="130" r="8" fill="#F59E0B" stroke="#0F172A" stroke-width="2.5"/>
+          </svg>
+        </div>
+
+        <div class="weight-btn-group">
+          <span style="font-size:13px;font-weight:800;align-self:center;">Chọn số kg cho Hộp [ ? ]:</span>
+          <button class="weight-btn" onclick="setMysteryWeight(4)">4 kg</button>
+          <button class="weight-btn" onclick="setMysteryWeight(5)">5 kg</button>
+          <button class="weight-btn" onclick="setMysteryWeight(6)">6 kg</button>
+          <button class="weight-btn" onclick="setMysteryWeight(7)">7 kg</button>
+          <button class="weight-btn" onclick="setMysteryWeight(8)">8 kg</button>
+          <button class="weight-btn" style="background:#EFF6FF;border-color:#1D4ED8;" onclick="newBalancePuzzle()">🔄 Đổi bài cân mới</button>
+        </div>
+      </div>
+
+      <div class="panel-card">
+        <div class="card-header">
+          <div class="card-title">🚶 Mô phỏng Bài toán xếp hàng từ hai đầu</div>
+          <span class="card-tag">Không đếm trùng</span>
+        </div>
+
+        <p style="font-size:13px;font-weight:600;color:#334155;margin-bottom:10px;">
+          Khi đếm từ trái sang, <b>Minh (ngôi sao vàng ★)</b> đứng thứ <b id="qLeftText">4</b>. Khi đếm từ phải sang, <b>Minh</b> đứng thứ <b id="qRightText">3</b>. Cùng xem hình để hiểu vì sao hàng có <b>4 + 3 - 1 = 6 bạn</b> nhé!
+        </p>
+
+        <div class="slider-row">
+          <label>Thứ tự từ trái sang:</label>
+          <input type="range" id="qLeftSlider" min="2" max="6" value="4" oninput="updateQueueSim()">
+          <span class="slider-val" id="qLeftVal">4</span>
+        </div>
+        <div class="slider-row">
+          <label>Thứ tự từ phải sang:</label>
+          <input type="range" id="qRightSlider" min="2" max="6" value="3" oninput="updateQueueSim()">
+          <span class="slider-val" id="qRightVal">3</span>
+        </div>
+
+        <div style="background:#F8FAFC;border:1.5px solid #CBD5E1;border-radius:12px;padding:12px;text-align:center;">
+          <svg id="queueSvg" viewBox="0 0 520 135" width="100%" height="130"></svg>
+        </div>
+
+        <div class="oral-card" style="margin-top:10px;">
+          <div class="oral-title">💡 Mẹo nhớ nhanh cho Minh:</div>
+          <div class="oral-text" id="queueRuleText">
+            Vì bạn Minh được đếm cả 2 lần (từ trái sang và từ phải sang), nên ta trừ bớt 1 lần lặp lại: Tổng số bạn = 4 + 3 - 1 = 6 bạn.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 4: 3+1+1 DAILY PRACTICE & PARENT CORNER -->
+  <section id="tab-spaced" class="tab-panel">
+    <div class="grid-2col">
+      <div class="panel-card">
+        <div class="card-header">
+          <div class="card-title">⚡ Bài luyện tập hằng ngày 3 + 1 + 1 (15 phút)</div>
+          <button class="btn-action-top no-print" onclick="generateDailyMission()">🔄 Đổi bộ câu hỏi mới</button>
+        </div>
+
+        <div class="mission-list" id="missionContainer"></div>
+
+        <div style="margin-top:14px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;" class="no-print">
+          <button class="btn-action-top" style="background:#1D4ED8;padding:10px 20px;font-size:14px;" onclick="gradeDailyMission()">
+            ✅ Kiểm tra đáp án &amp; Lưu kết quả
+          </button>
+          <div id="missionScoreBanner" style="font-size:14.5px;font-weight:900;color:#059669;"></div>
+        </div>
+      </div>
+
+      <div class="panel-card">
+        <div class="card-header">
+          <div class="card-title">👨‍👩‍👦 Góc Ba Mẹ: Lịch ôn tập giúp con nhớ bài lâu</div>
+          <span class="card-tag">Tự động lưu trên máy</span>
+        </div>
+
+        <p style="font-size:13px;color:#334155;font-weight:600;margin-bottom:10px;">
+          Mỗi buổi học nhẹ nhàng gồm <b>3 bài đang học trên lớp + 1 bài ôn lại tuần trước + 1 câu đố tư duy vui</b> giúp con hiểu sâu bản chất, nhớ bài tự nhiên và không học vẹt.
+        </p>
+
+        <div class="schedule-grid">
+          <div class="ebb-card done">
+            <div class="ebb-day">Ôn lần 1 (Sau 1 ngày)</div>
+            <div class="ebb-status">Hoàn thành tốt</div>
+          </div>
+          <div class="ebb-card done">
+            <div class="ebb-day">Ôn lần 2 (Sau 3 ngày)</div>
+            <div class="ebb-status">Nắm vững bài</div>
+          </div>
+          <div class="ebb-card done">
+            <div class="ebb-day">Ôn lần 3 (Sau 7 ngày)</div>
+            <div class="ebb-status">Nhớ chắc chắn</div>
+          </div>
+          <div class="ebb-card">
+            <div class="ebb-day">Ôn lần 4 (Sau 21 ngày)</div>
+            <div class="ebb-status" style="color:#1D4ED8;">Đang rèn luyện</div>
+          </div>
+        </div>
+
+        <div style="margin-top:16px;background:#F8FAFC;border:1.5px solid #CBD5E1;border-radius:11px;padding:14px;">
+          <div style="font-size:13px;font-weight:800;color:#0F172A;margin-bottom:8px;">
+            📋 Tổng hợp 3 kỹ năng toán học của Bé Minh (Henry):
+          </div>
+          <div style="font-size:12.5px;font-weight:700;color:#334155;display:flex;flex-direction:column;gap:8px;">
+            <div style="display:flex;justify-content:space-between;">
+              <span>1. Tách – Gộp số &amp; Tính nhẩm trong phạm vi 10, 20:</span>
+              <span style="color:#059669;font-weight:900;">Rất tốt (98%)</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;">
+              <span>2. Vẽ sơ đồ đoạn thẳng giải bài toán có lời văn:</span>
+              <span style="color:#1D4ED8;font-weight:900;">Vững vàng (92%)</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;">
+              <span>3. Toán tư duy logic (Cân thăng bằng &amp; Đội hình xếp hàng):</span>
+              <span style="color:#D97706;font-weight:900;">Tiến bộ nhanh (88%)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- MODAL: HƯỚNG DẪN CÀI ĐẶT LÊN MÀN HÌNH CHÍNH IPAD & ANDROID PAD -->
+<div class="modal-backdrop" id="installModal" onclick="if(event.target===this) closeInstallModal()">
+  <div class="modal-box">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;padding-bottom:10px;border-bottom:1.5px solid #E2E8F0;">
+      <div style="font-size:16px;font-weight:900;color:#0F172A;">📱 Hướng dẫn cài ứng dụng lên iPad &amp; Máy tính bảng Android</div>
+      <button onclick="closeInstallModal()" style="background:#F1F5F9;border:none;border-radius:8px;padding:6px 12px;font-weight:800;cursor:pointer;">Đóng ✕</button>
+    </div>
+    <div style="font-size:13px;color:#1E293B;line-height:1.5;display:flex;flex-direction:column;gap:12px;">
+      <div style="background:#EFF6FF;border:1.5px solid #93C5FD;border-radius:10px;padding:12px 14px;">
+        <div style="font-weight:900;color:#1D4ED8;margin-bottom:4px;">🍎 Cách cài trên iPad / iPhone (Trình duyệt Safari):</div>
+        <div>1. Mở đường link này bằng trình duyệt <b>Safari</b> trên iPad của bé.</div>
+        <div>2. Bấm vào biểu tượng <b>Chia sẻ (Share — hình ô vuông có mũi tên hướng lên ⬆️)</b> ở thanh trên cùng của iPad.</div>
+        <div>3. Chọn <b>"Thêm vào Màn hình chính" (Add to Home Screen ➕)</b> rồi bấm <b>Thêm (Add)</b>.</div>
+        <div>4. Biểu tượng <b>Toán Lớp 1 Minh (H+)</b> sẽ xuất hiện ngay trên màn hình iPad như một ứng dụng độc lập, mở toàn màn hình và học được cả khi không có mạng!</div>
+      </div>
+      <div style="background:#F0FDF4;border:1.5px solid #86EFAC;border-radius:10px;padding:12px 14px;">
+        <div style="font-weight:900;color:#15803D;margin-bottom:4px;">🤖 Cách cài trên Máy tính bảng Android (Trình duyệt Chrome):</div>
+        <div>1. Mở đường link này bằng trình duyệt <b>Chrome</b> trên máy tính bảng Android.</div>
+        <div>2. Bấm vào nút <b>Menu 3 chấm (⋮)</b> ở góc trên bên phải màn hình.</div>
+        <div>3. Chọn <b>"Cài đặt ứng dụng" (Install App)</b> hoặc <b>"Thêm vào màn hình chính" (Add to Home screen)</b>.</div>
+      </div>
+      <div style="text-align:right;">
+        <button class="btn-action-top" style="background:#1D4ED8;padding:9px 18px;font-size:13px;" onclick="closeInstallModal()">Đã hiểu</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Register Service Worker for Offline iPad / Android PWA Durability
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js').catch(() => {});
+    });
+  }
+
+  function openInstallModal() {
+    document.getElementById('installModal').classList.add('open');
+  }
+
+  function closeInstallModal() {
+    document.getElementById('installModal').classList.remove('open');
+  }
+
+  // --- STATE MANAGEMENT ---
+  let cpaTarget = 10;
+  let cpaCells = [1, 1, 1, 1, 1, 1, 1, 2, 2, 2]; // 1 = Part A (Blue), 2 = Part B (Amber), 0 = Empty
+  let xpScore = parseInt(localStorage.getItem('henry_math_xp') || '120', 10);
+  document.getElementById('scoreVal').textContent = xpScore + ' sao';
+
+  function addXp(amount) {
+    xpScore += amount;
+    localStorage.setItem('henry_math_xp', xpScore);
+    document.getElementById('scoreVal').textContent = xpScore + ' sao';
+  }
+
+  function switchTab(tabId, btnEl) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+    btnEl.classList.add('active');
+  }
+
+  // --- TAB 1: CPA & TEN-FRAME ---
+  function setCpaTarget(target, btnEl) {
+    cpaTarget = target;
+    document.querySelectorAll('.target-group .num-btn').forEach(b => b.classList.remove('active'));
+    if (btnEl) btnEl.classList.add('active');
+    const partA = Math.max(1, Math.floor(target * 0.65));
+    cpaCells = [];
+    for (let i = 0; i < 10; i++) {
+      if (i < partA) cpaCells.push(1);
+      else if (i < target) cpaCells.push(2);
+      else cpaCells.push(0);
+    }
+    renderTenFrame();
+  }
+
+  function randomizeCpaSplit() {
+    const partA = Math.floor(Math.random() * (cpaTarget - 1)) + 1;
+    cpaCells = [];
+    for (let i = 0; i < 10; i++) {
+      if (i < partA) cpaCells.push(1);
+      else if (i < cpaTarget) cpaCells.push(2);
+      else cpaCells.push(0);
+    }
+    renderTenFrame();
+  }
+
+  function toggleCell(idx) {
+    if (idx >= cpaTarget) return;
+    cpaCells[idx] = cpaCells[idx] === 1 ? 2 : 1;
+    addXp(2);
+    renderTenFrame();
+  }
+
+  function setPerimeterLine(lineId, x1, y1, r1, x2, y2, r2) {
+    const dx = x2 - x1;
+    const dy = y2 - y1;
+    const d = Math.hypot(dx, dy);
+    const sx = x1 + (dx / d) * r1;
+    const sy = y1 + (dy / d) * r1;
+    const ex = x2 - (dx / d) * r2;
+    const ey = y2 - (dy / d) * r2;
+    const el = document.getElementById(lineId);
+    el.setAttribute('x1', sx.toFixed(1));
+    el.setAttribute('y1', sy.toFixed(1));
+    el.setAttribute('x2', ex.toFixed(1));
+    el.setAttribute('y2', ey.toFixed(1));
+  }
+
+  function renderTenFrame() {
+    const grid = document.getElementById('tenFrameGrid');
+    grid.innerHTML = '';
+    let partA = 0, partB = 0;
+    cpaCells.forEach((state, idx) => {
+      if (state === 1) partA++;
+      if (state === 2) partB++;
+      const cell = document.createElement('div');
+      cell.className = 'tf-cell';
+      cell.onclick = () => toggleCell(idx);
+      const idxSpan = document.createElement('span');
+      idxSpan.className = 'cell-idx';
+      idxSpan.textContent = idx + 1;
+      cell.appendChild(idxSpan);
+
+      if (state === 1 || state === 2) {
+        const chip = document.createElement('div');
+        chip.className = 'chip ' + (state === 1 ? 'part-a' : 'part-b');
+        chip.textContent = state === 1 ? 'A' : 'B';
+        cell.appendChild(chip);
+      }
+      grid.appendChild(cell);
+    });
+
+    const whole = partA + partB;
+    document.getElementById('nbWholeText').textContent = whole;
+    document.getElementById('nbPartAText').textContent = partA;
+    document.getElementById('nbPartBText').textContent = partB;
+
+    setPerimeterLine('nbLineLeft', 210, 54, 32, 95, 166, 30);
+    setPerimeterLine('nbLineRight', 210, 54, 32, 325, 166, 30);
+
+    document.getElementById('ffAdd1').textContent = `${partA} + ${partB} = ${whole}`;
+    document.getElementById('ffAdd2').textContent = `${partB} + ${partA} = ${whole}`;
+    document.getElementById('ffSub1').textContent = `${whole} - ${partA} = ${partB}`;
+    document.getElementById('ffSub2').textContent = `${whole} - ${partB} = ${partA}`;
+
+    document.getElementById('oralText').textContent =
+      `"Vì ${whole} gồm ${partA} và ${partB}, nên ${partA} cộng ${partB} bằng ${whole}, và ${whole} trừ ${partA} bằng ${partB}."`;
+    document.getElementById('enSentence').textContent =
+      `"${partA} and ${partB} make ${whole}. The whole is ${whole}; the parts are ${partA} and ${partB}."`;
+    document.getElementById('enSentenceVn').textContent =
+      `Dịch nghĩa: ${partA} và ${partB} gộp lại thành ${whole}. Tổng (Whole) là ${whole}; hai phần (Parts) là ${partA} và ${partB}.`;
+
+    document.getElementById('miniQuizPrompt').textContent = `${partA} + [ ? ] = ${whole}`;
+    document.getElementById('miniQuizInput').dataset.expected = partB;
+    document.getElementById('miniQuizFeedback').textContent = '';
+  }
+
+  function verifyMiniQuiz() {
+    const input = document.getElementById('miniQuizInput');
+    const expected = parseInt(input.dataset.expected, 10);
+    const val = parseInt(input.value, 10);
+    const fb = document.getElementById('miniQuizFeedback');
+    if (val === expected) {
+      fb.style.color = '#059669';
+      fb.textContent = `🌟 Giỏi lắm! Vì ${cpaTarget} trừ đi phần đã biết còn lại ${expected}. (+10 sao)`;
+      addXp(10);
+    } else {
+      fb.style.color = '#E11D48';
+      fb.textContent = `💡 Minh đếm lại số chấm tròn màu vàng trên Khung 10 ô nhé!`;
+    }
+  }
+
+  function speakEnglishSentence() {
+    if (!('speechSynthesis' in window)) return;
+    const text = document.getElementById('enSentence').textContent.replace(/"/g, '');
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = 'en-US';
+    u.rate = 0.9;
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(u);
+  }
+
+  function speakVietnameseExplanation() {
+    if (!('speechSynthesis' in window)) return;
+    const text = document.getElementById('oralText').textContent.replace(/"/g, '');
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = 'vi-VN';
+    u.rate = 0.95;
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(u);
+  }
+
+  // --- TAB 2: SINGAPORE BAR MODEL ---
+  let barSchema = 'part-whole';
+
+  function setBarSchema(schema, btnEl) {
+    barSchema = schema;
+    btnEl.parentElement.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+    btnEl.classList.add('active');
+    updateBarModel();
+  }
+
+  function updateBarModel() {
+    const a = parseInt(document.getElementById('barSliderA').value, 10);
+    const b = parseInt(document.getElementById('barSliderB').value, 10);
+    document.getElementById('barValA').textContent = a;
+    document.getElementById('barValB').textContent = b;
+
+    const svg = document.getElementById('barModelSvg');
+    const unitPx = 22;
+    const startX = 110;
+
+    if (barSchema === 'part-whole') {
+      const total = a + b;
+      const wA = a * unitPx;
+      const wB = b * unitPx;
+      svg.innerHTML = `
+        <text x="15" y="75" font-size="13" font-weight="800" fill="#0F172A">Gộp hai phần:</text>
+        <rect x="${startX}" y="48" width="${wA}" height="42" rx="6" fill="#2563EB"/>
+        <text x="${startX + wA/2}" y="74" text-anchor="middle" font-size="15" font-weight="900" fill="#FFFFFF">${a}</text>
+        <rect x="${startX + wA + 3}" y="48" width="${wB}" height="42" rx="6" fill="#F59E0B"/>
+        <text x="${startX + wA + 3 + wB/2}" y="74" text-anchor="middle" font-size="15" font-weight="900" fill="#0F172A">${b}</text>
+        <line x1="${startX}" y1="112" x2="${startX + wA + wB + 3}" y2="112" stroke="#0F172A" stroke-width="2.5"/>
+        <line x1="${startX}" y1="104" x2="${startX}" y2="118" stroke="#0F172A" stroke-width="2.5"/>
+        <line x1="${startX + wA + wB + 3}" y1="104" x2="${startX + wA + wB + 3}" y2="118" stroke="#0F172A" stroke-width="2.5"/>
+        <rect x="${startX + (wA + wB)/2 - 48}" y="124" width="96" height="32" rx="8" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="2"/>
+        <text x="${startX + (wA + wB)/2}" y="145" text-anchor="middle" font-size="15" font-weight="900" fill="#1D4ED8">Tổng = ${total}</text>
+      `;
+      document.getElementById('barProblemText').textContent =
+        `Minh có ${a} quyển truyện tranh và ${b} quyển sách toán. Hỏi Minh có tất cả bao nhiêu quyển sách?`;
+      document.getElementById('barProblemEn').textContent =
+        `Tiếng Anh: Henry has ${a} comic books and ${b} math books. How many books does he have altogether? (altogether = tất cả)`;
+      document.getElementById('solveStep1').textContent = `Biết phần 1 = ${a}, phần 2 = ${b}. Đề bài hỏi có tất cả bao nhiêu.`;
+      document.getElementById('solveStep2').textContent = `Nối tiếp 2 đoạn thẳng thành phần để tìm đoạn thẳng Tổng.`;
+      document.getElementById('solveStep3').textContent = `Phép tính: ${a} + ${b} = ${total} (quyển sách).`;
+      document.getElementById('solveStep4').textContent = `Kiểm tra lại: ${total} - ${a} = ${b} (Đúng).`;
+    } else if (barSchema === 'comparison') {
+      const big = Math.max(a, b);
+      const small = Math.min(a, b);
+      const diff = big - small;
+      const wBig = big * unitPx;
+      const wSmall = small * unitPx;
+      const wDiff = Math.max(diff * unitPx, 36);
+      svg.innerHTML = `
+        <text x="15" y="65" font-size="13" font-weight="800" fill="#1D4ED8">Số lớn (${big}):</text>
+        <rect x="${startX}" y="40" width="${wBig}" height="38" rx="6" fill="#2563EB"/>
+        <text x="${startX + wBig/2}" y="64" text-anchor="middle" font-size="15" font-weight="900" fill="#FFFFFF">${big}</text>
+
+        <text x="15" y="125" font-size="13" font-weight="800" fill="#0F766E">Số bé (${small}):</text>
+        <rect x="${startX}" y="100" width="${wSmall}" height="38" rx="6" fill="#0D9488"/>
+        <text x="${startX + wSmall/2}" y="124" text-anchor="middle" font-size="15" font-weight="900" fill="#FFFFFF">${small}</text>
+
+        <rect x="${startX + wSmall + 4}" y="100" width="${wDiff}" height="38" rx="6" fill="#FFFBEB" stroke="#D97706" stroke-width="2" stroke-dasharray="5,4"/>
+        <text x="${startX + wSmall + 4 + wDiff/2}" y="124" text-anchor="middle" font-size="13" font-weight="900" fill="#B45309">Hơn: ${diff}</text>
+      `;
+      document.getElementById('barProblemText').textContent =
+        `Đội Xanh có ${big} ngôi sao, Đội Ngọc có ${small} ngôi sao. Hỏi Đội Xanh nhiều hơn Đội Ngọc mấy ngôi sao?`;
+      document.getElementById('barProblemEn').textContent =
+        `Tiếng Anh: Blue Team has ${big} stars and Teal Team has ${small} stars. How many more stars does Blue Team have? (more than = nhiều hơn)`;
+      document.getElementById('solveStep1').textContent = `Biết Đội Xanh = ${big}, Đội Ngọc = ${small}. Tìm phần chênh lệch.`;
+      document.getElementById('solveStep2').textContent = `Đặt 2 đoạn thẳng bằng nhau ở đầu bên trái để nhìn rõ phần dài hơn.`;
+      document.getElementById('solveStep3').textContent = `Phép tính: ${big} - ${small} = ${diff} (ngôi sao).`;
+      document.getElementById('solveStep4').textContent = `Kiểm tra lại: ${small} + ${diff} = ${big} (Đúng).`;
+    } else {
+      const startVal = Math.max(a, b);
+      const takeAway = Math.min(a, b - 1 > 0 ? b - 1 : 1);
+      const remain = startVal - takeAway;
+      const wRemain = remain * unitPx;
+      const wTake = takeAway * unitPx;
+      svg.innerHTML = `
+        <text x="15" y="85" font-size="13" font-weight="800" fill="#0F172A">Ban đầu (${startVal}):</text>
+        <rect x="${startX}" y="58" width="${wRemain}" height="42" rx="6" fill="#059669"/>
+        <text x="${startX + wRemain/2}" y="84" text-anchor="middle" font-size="14" font-weight="900" fill="#FFFFFF">Còn: ${remain}</text>
+        <rect x="${startX + wRemain + 4}" y="58" width="${wTake}" height="42" rx="6" fill="#FFE4E6" stroke="#E11D48" stroke-width="2" stroke-dasharray="5,3"/>
+        <text x="${startX + wRemain + 4 + wTake/2}" y="84" text-anchor="middle" font-size="13" font-weight="900" fill="#E11D48">Bớt ${takeAway}</text>
+      `;
+      document.getElementById('barProblemText').textContent =
+        `Trên cành cây có ${startVal} chú chim, sau đó ${takeAway} chú chim bay đi. Hỏi trên cành còn lại bao nhiêu chú chim?`;
+      document.getElementById('barProblemEn').textContent =
+        `Tiếng Anh: There were ${startVal} birds on a tree. Then ${takeAway} birds flew away. How many birds are left? (left = còn lại)`;
+      document.getElementById('solveStep1').textContent = `Ban đầu có ${startVal}, bay đi ${takeAway}. Tìm số chim còn lại.`;
+      document.getElementById('solveStep2').textContent = `Vẽ đoạn thẳng ban đầu rồi gạch nét đứt phần đã bớt đi.`;
+      document.getElementById('solveStep3').textContent = `Phép tính: ${startVal} - ${takeAway} = ${remain} (chú chim).`;
+      document.getElementById('solveStep4').textContent = `Kiểm tra lại: ${remain} + ${takeAway} = ${startVal} (Đúng).`;
+    }
+  }
+
+  // --- TAB 3: BALANCE & QUEUE ---
+  let balKnownLeft = 3;
+  let balRightTotal = 10;
+  let balCurrentGuess = 5;
+
+  function setMysteryWeight(w) {
+    balCurrentGuess = w;
+    renderBalance();
+  }
+
+  function newBalancePuzzle() {
+    balRightTotal = Math.floor(Math.random() * 4) + 9; // 9..12
+    balKnownLeft = Math.floor(Math.random() * 3) + 3;  // 3..5
+    balCurrentGuess = 4;
+    renderBalance();
+  }
+
+  function renderBalance() {
+    const leftSum = balCurrentGuess + balKnownLeft;
+    const diff = balRightTotal - leftSum;
+    const angle = Math.max(-14, Math.min(14, -diff * 3.5));
+    document.getElementById('balanceBeamGroup').setAttribute('transform', `rotate(${angle}, 250, 130)`);
+    document.getElementById('mysteryBoxSvgText').textContent = `? (${balCurrentGuess})`;
+    document.getElementById('leftKnownSvgText').textContent = `+${balKnownLeft}`;
+    document.getElementById('rightTotalSvgText').textContent = `${balRightTotal} kg`;
+
+    const badge = document.getElementById('balanceStatusBadge');
+    if (diff === 0) {
+      badge.style.background = '#D1FAE5';
+      badge.style.color = '#059669';
+      badge.textContent = `🌟 Cân bằng rồi! Hộp [ ? ] = ${balCurrentGuess} kg`;
+      addXp(15);
+    } else {
+      badge.style.background = '#FFE4E6';
+      badge.style.color = '#E11D48';
+      badge.textContent = `Đang lệch cân (${leftSum} kg so với ${balRightTotal} kg)`;
+    }
+  }
+
+  function updateQueueSim() {
+    const leftPos = parseInt(document.getElementById('qLeftSlider').value, 10);
+    const rightPos = parseInt(document.getElementById('qRightSlider').value, 10);
+    document.getElementById('qLeftVal').textContent = leftPos;
+    document.getElementById('qRightVal').textContent = rightPos;
+    document.getElementById('qLeftText').textContent = leftPos;
+    document.getElementById('qRightText').textContent = rightPos;
+
+    const total = leftPos + rightPos - 1;
+    const svg = document.getElementById('queueSvg');
+    const spacing = 44;
+    const startX = (520 - (total - 1) * spacing) / 2;
+
+    let html = '';
+    for (let i = 1; i <= total; i++) {
+      const cx = startX + (i - 1) * spacing;
+      const isHenry = (i === leftPos);
+      const fill = isHenry ? '#F59E0B' : '#DBEAFE';
+      const stroke = isHenry ? '#B45309' : '#2563EB';
+      html += `
+        <circle cx="${cx}" cy="62" r="18" fill="${fill}" stroke="${stroke}" stroke-width="3"/>
+        <text x="${cx}" y="67" text-anchor="middle" font-size="13" font-weight="900" fill="#0F172A">${isHenry ? '★' : i}</text>
+        <text x="${cx}" y="98" text-anchor="middle" font-size="10" font-weight="800" fill="${isHenry ? '#B45309' : '#475569'}">${isHenry ? 'MINH' : 'Bạn ' + i}</text>
+      `;
+    }
+    svg.innerHTML = html;
+    document.getElementById('queueRuleText').textContent =
+      `Vì bạn Minh (★) được đếm cả 2 lần (thứ ${leftPos} từ trái sang và thứ ${rightPos} từ phải sang), nên ta trừ bớt 1 lần lặp lại: ${leftPos} + ${rightPos} - 1 = ${total} bạn.`;
+  }
+
+  // --- TAB 4: 3+1+1 DAILY PRACTICE ---
+  let currentMission = [];
+
+  function generateDailyMission() {
+    const a1 = Math.floor(Math.random() * 4) + 5; // 5..8
+    const b1 = 10 - a1;
+    const a2 = Math.floor(Math.random() * 3) + 6; // 6..8
+    const b2 = Math.floor(Math.random() * 3) + 5; // 5..7
+    currentMission = [
+      { tag: 'Bài 1 • Tách – Gộp trong phạm vi 10', cls: 'tag-core', q: `Điền số còn thiếu vào phép tính: ${a1} + [ ? ] = 10`, ans: b1 },
+      { tag: 'Bài 2 • Bộ phép tính cộng – trừ', cls: 'tag-core', q: `Nếu ${a1} + ${b1} = 10 thì 10 - ${b1} bằng bao nhiêu?`, ans: a1 },
+      { tag: 'Bài 3 • Cộng qua 10 (Gộp đủ chục)', cls: 'tag-core', q: `Tính nhẩm bằng cách tách số cho đủ 10: ${a2} + ${b2} = ?`, ans: a2 + b2 },
+      { tag: 'Bài 4 • Ôn tập toán có lời văn', cls: 'tag-review', q: `Minh có 9 nhãn vở, Minh nhiều hơn An 3 nhãn vở. Hỏi An có mấy nhãn vở?`, ans: 6 },
+      { tag: 'Bài 5 • Câu đố vui xếp hàng', cls: 'tag-olympiad', q: `Xếp hàng dọc: Minh đứng thứ 4 từ đầu hàng và đứng thứ 4 từ cuối hàng. Hỏi hàng có mấy bạn?`, ans: 7 }
+    ];
+
+    const container = document.getElementById('missionContainer');
+    container.innerHTML = '';
+    currentMission.forEach((m, idx) => {
+      const row = document.createElement('div');
+      row.className = 'mission-item';
+      row.innerHTML = `
+        <div>
+          <span class="mission-tag ${m.cls}">${m.tag}</span>
+          <div class="mission-q">Câu ${idx + 1}: ${m.q}</div>
+        </div>
+        <div class="mission-input-group">
+          <input type="number" class="mission-input" id="missionAns_${idx}" placeholder="?">
+        </div>
+      `;
+      container.appendChild(row);
+    });
+    document.getElementById('missionScoreBanner').textContent = '';
+  }
+
+  function gradeDailyMission() {
+    let correct = 0;
+    currentMission.forEach((m, idx) => {
+      const inp = document.getElementById(`missionAns_${idx}`);
+      const val = parseInt(inp.value, 10);
+      if (val === m.ans) {
+        correct++;
+        inp.style.borderColor = '#059669';
+        inp.style.background = '#D1FAE5';
+      } else {
+        inp.style.borderColor = '#E11D48';
+        inp.style.background = '#FFE4E6';
+        inp.value = m.ans;
+      }
+    });
+    addXp(correct * 10);
+    document.getElementById('missionScoreBanner').textContent =
+      `🏆 Kết quả: Minh làm đúng ${correct}/5 câu (+${correct * 10} sao thưởng)!`;
+  }
+
+  // Initialize all interactive views on load
+  renderTenFrame();
+  updateBarModel();
+  renderBalance();
+  updateQueueSim();
+  generateDailyMission();
+  const params = new URLSearchParams(window.location.search);
+  const qTab = params.get('tab');
+  if (qTab && document.getElementById(qTab)) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById(qTab).classList.add('active');
+    const btns = document.querySelectorAll('.tab-btn');
+    btns.forEach(b => {
+      b.classList.toggle('active', b.getAttribute('onclick').includes(qTab));
+    });
+  }
+</script>
+</body>
+</html>
